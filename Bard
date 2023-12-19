@@ -1,0 +1,31 @@
+import UIKit
+
+class BardViewController: UIViewController {
+
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textField: UITextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 初始化语言模型
+        let languageModel = Bard()
+
+        // 设置文本视图
+        textView.text = ""
+
+        // 设置文本框
+        textField.placeholder = "请输入您的问题或请求"
+    }
+
+    @IBAction func sendButtonTapped(_ sender: Any) {
+        // 获取文本框中的输入
+        let input = textField.text ?? ""
+
+        // 使用语言模型生成输出
+        let output = languageModel.generate(input)
+
+        // 更新文本视图
+        textView.text = output
+    }
+}
